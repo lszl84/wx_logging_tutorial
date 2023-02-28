@@ -27,6 +27,16 @@ public:
 
         if (gc)
         {
+            if (points.size() <= 1)
+            {
+                wxLogDebug("Squiggle: Not enough points to draw");
+                return;
+            }
+            else
+            {
+                wxLogDebug("Squiggle: Drawing %zu points. From (%.2f, %.2f) to (%.2f, %.2f)", points.size(), points[0].m_x, points[0].m_y, points[points.size() - 1].m_x, points[points.size() - 1].m_y);
+            }
+
             gc->SetPen(wxPen(*wxGREEN, FromDIP(5)));
 
             for (int i = 1; i < points.size(); i++)
@@ -40,6 +50,13 @@ public:
 
     void OnMouseMove(wxMouseEvent &evt)
     {
+        wxLogDebug("Squiggle: Mouse moved to %d, %d", evt.GetX(), evt.GetY());
+
+        if (points.size() > 0)
+        {
+            wxLogDebug("Squiggle: Last point was (%.2f, %.2f)", points[points.size() - 1].m_x, points[points.size() - 1].m_y);
+        }
+
         points.push_back(evt.GetPosition());
 
         if (points.size() > MAX_POINTS)

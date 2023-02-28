@@ -38,8 +38,6 @@ MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
     logger = new wxLogWindow(this, "Log", true, true);
     wxLog::SetActiveTarget(logger);
 
-    wxLog::SetLogLevel(wxLOG_Message);
-
     auto sizer = new wxGridSizer(2, FromDIP(10), FromDIP(10));
 
     sizer->Add(new RectangleComponent(this), 1, wxEXPAND);

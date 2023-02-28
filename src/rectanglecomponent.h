@@ -14,8 +14,6 @@ public:
 
         this->Bind(wxEVT_PAINT, &RectangleComponent::OnPaint, this);
         this->Bind(wxEVT_MOTION, &RectangleComponent::OnMouseMove, this);
-
-        wxLogMessage("RectangleComponent created");
     }
 
     void OnPaint(wxPaintEvent &evt)
@@ -42,6 +40,7 @@ public:
 
     void OnMouseMove(wxMouseEvent &evt)
     {
+        wxLogDebug("Rectangle: Mouse moved to %d, %d", evt.GetX(), evt.GetY());
         position = evt.GetPosition();
         this->Refresh();
     }
