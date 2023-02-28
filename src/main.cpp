@@ -15,6 +15,14 @@ class MyFrame : public wxFrame
 {
 public:
     MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
+    ~MyFrame()
+    {
+        wxLog::SetActiveTarget(nullptr);
+        delete logger;
+    }
+
+private:
+    wxLog *logger;
 };
 
 bool MyApp::OnInit()
@@ -27,6 +35,9 @@ bool MyApp::OnInit()
 MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
     : wxFrame(nullptr, wxID_ANY, title, pos, size)
 {
+    logger = new wxLogStderr();
+    wxLog::SetActiveTarget(logger);
+
     auto sizer = new wxGridSizer(2, FromDIP(10), FromDIP(10));
 
     sizer->Add(new RectangleComponent(this), 1, wxEXPAND);
