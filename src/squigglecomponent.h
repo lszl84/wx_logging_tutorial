@@ -6,6 +6,9 @@
 
 #include <deque>
 
+#undef wxLOG_COMPONENT
+#define wxLOG_COMPONENT "main/SquiggleComponent"
+
 class SquiggleComponent : public wxWindow
 {
 public:
@@ -16,6 +19,15 @@ public:
 
         this->Bind(wxEVT_PAINT, &SquiggleComponent::OnPaint, this);
         this->Bind(wxEVT_MOTION, &SquiggleComponent::OnMouseMove, this);
+
+        this->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent &evt)
+                   { wxLogDebug("Squiggle: <--- Mouse left window"); });
+
+        this->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent &evt)
+                   {
+                       wxLogDebug("Squiggle: ---> Mouse entered window");
+                       points.clear();
+                   });
     }
 
     void OnPaint(wxPaintEvent &evt)

@@ -4,6 +4,9 @@
 #include <wx/graphics.h>
 #include <wx/dcbuffer.h>
 
+#undef wxLOG_COMPONENT
+#define wxLOG_COMPONENT "main/RectangleComponent"
+
 class RectangleComponent : public wxWindow
 {
 public:
