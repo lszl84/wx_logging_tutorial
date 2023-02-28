@@ -25,6 +25,8 @@ public:
 
         if (gc)
         {
+            wxLogMessage("Drawing rectangle at %f, %f", position.m_x, position.m_y);
+
             gc->SetBrush(*wxRED_BRUSH);
 
             auto width = gc->FromDIP(100);
