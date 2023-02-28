@@ -14,6 +14,8 @@ public:
 
         this->Bind(wxEVT_PAINT, &RectangleComponent::OnPaint, this);
         this->Bind(wxEVT_MOTION, &RectangleComponent::OnMouseMove, this);
+
+        wxLogMessage("RectangleComponent created");
     }
 
     void OnPaint(wxPaintEvent &evt)
@@ -25,7 +27,7 @@ public:
 
         if (gc)
         {
-            wxLogMessage("Drawing rectangle at %f, %f", position.m_x, position.m_y);
+            wxLogDebug("Drawing rectangle at %f, %f", position.m_x, position.m_y);
 
             gc->SetBrush(*wxRED_BRUSH);
 

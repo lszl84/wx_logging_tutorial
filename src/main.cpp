@@ -35,7 +35,7 @@ bool MyApp::OnInit()
 MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
     : wxFrame(nullptr, wxID_ANY, title, pos, size)
 {
-    logger = new wxLogWindow(this, "Log", true, false);
+    logger = new wxLogWindow(this, "Log", true, true);
     wxLog::SetActiveTarget(logger);
 
     auto sizer = new wxGridSizer(2, FromDIP(10), FromDIP(10));
