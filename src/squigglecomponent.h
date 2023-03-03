@@ -42,6 +42,7 @@ public:
             if (points.size() <= 1)
             {
                 wxLogDebug("Squiggle: Not enough points to draw");
+                delete gc;
                 return;
             }
             else
